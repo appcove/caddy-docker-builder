@@ -1,0 +1,39 @@
+{
+  "apps": {
+    "http": {
+      "servers": {
+        "default": {
+          "listen": [":80"],
+          "routes": [
+            {
+              "handle": [
+                {
+                  "handler": "file_server",
+                  "root": "/usr/share/nginx/html"
+                }
+              ],
+              "match": [
+                {
+                  "host": ["yourdomain.com"]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "tls": {
+      "automation": {
+        "policies": [
+          {
+            "subjects": ["yourdomain.com"],
+            "issuer": {
+              "module": "acme"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+
